@@ -1,0 +1,221 @@
+*:not(dialog) {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+body,
+#root {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  place-content: center;
+  background-image: url('assets/texture.avif');
+  background-size: 300px;
+  height: 100dvh;
+}
+
+.center {
+  width: 400px;
+  height: 400px;
+  transform: translateY(-50px);
+  display: flex;
+  flex-direction: column;
+
+
+  .C1-HEADER {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 1rem;
+    position: relative;
+
+    .sudoku-logo {
+      width: 6rem;
+      height: 6rem;
+      display: grid;
+      grid-template-columns: repeat(3, auto);
+      grid-template-columns: repeat(3, auto);
+      gap: 1px;
+      transform: rotate(-20deg) scale(.7);
+      box-shadow: 0 0 8px 0 #0004;
+      -webkit-tap-highlight-color: transparent;
+
+      * {
+        pointer-events: none;
+        user-select: none;
+        -webkit-tap-highlight-color: transparent;
+      }
+
+      &.verify {
+        article {
+          &:nth-child(even) {
+            background-color: magenta;
+          }
+        }
+      }
+
+      article {
+        font-weight: 900;
+        color: #000;
+        display: flex;
+        flex-wrap: wrap;
+        place-content: center;
+        background-color: ghostwhite;
+        transition: background-color .5s linear;
+
+        &:nth-child(even) {
+          background-color: springgreen;
+        }
+      }
+    }
+
+    .message {
+      position: absolute;
+      font-size: .7rem;
+      bottom: 0;
+      left: 90px;
+      transform: rotate(5deg);
+    }
+  }
+
+  .C2-SUDOKU {
+    display: grid;
+    grid-template-columns: repeat(9, auto);
+    grid-template-rows: repeat(9, auto);
+    place-content: center;
+
+
+    input[type=text] {
+      width: 40px;
+      height: 40px;
+      display: flex;
+      flex-wrap: wrap;
+      place-content: center;
+      font-size: 1rem;
+      border: 1px solid #0008;
+      outline: none;
+      text-align: center;
+      caret-color: #000;
+
+      &.invalido {
+        background-color: red !important;
+      }
+
+      &:nth-child(even) {
+        background-color: #00ff7fcc;
+      }
+
+      &:nth-child(4),
+      &:nth-child(6),
+      &:nth-child(14),
+      &:nth-child(22),
+      &:nth-child(24),
+      &:nth-child(34),
+      &:nth-child(36),
+      &:nth-child(44),
+      &:nth-child(52),
+      &:nth-child(54),
+      &:nth-child(28),
+      &:nth-child(30),
+      &:nth-child(38),
+      &:nth-child(46),
+      &:nth-child(48),
+      &:nth-child(58),
+      &:nth-child(60),
+      &:nth-child(68),
+      &:nth-child(76),
+      &:nth-child(78) {
+        background-color: #7cfc00cc;
+      }
+
+      &:invalid {
+        color: #f00;
+      }
+    }
+
+    @media (width <=1000px) {
+      & {
+        transform: scale(.8);
+      }
+    }
+  }
+
+  .C3-COUNTER {
+    text-align: center;
+    padding: 2rem;
+    font-style: italic;
+  }
+}
+
+dialog {
+  border: none;
+  scale: 0;
+  border-radius: 24px;
+
+  &[open] {
+    scale: 1;
+    transition: scale .3s ease, display .2s ease allow-discrete;
+
+
+    @starting-style {
+      scale: 0;
+    }
+  }
+
+  &::backdrop {
+    background-image: linear-gradient(to top,
+        #0008 0% 40%,
+        #0006);
+  }
+
+  .container {
+    margin-top: 1rem;
+    padding: .9rem;
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    width: 200px;
+    height: 100px;
+    text-align: center;
+
+    overflow-wrap: anywhere;
+  }
+
+  button {
+    display: block;
+    border-radius: 999px;
+    margin-inline: auto;
+    outline: none;
+    border: 8px groove slateblue;
+    color: azure;
+    user-select: none;
+    background-image: linear-gradient(to bottom right,
+        slateblue,
+        violet);
+    padding: .4rem .8rem;
+    background-color: transparent;
+
+
+    &:hover {
+      background-image: linear-gradient(to top right,
+          slateblue,
+          violet);
+    }
+  }
+
+  .close {
+    width: 2rem;
+    height: 2rem;
+    position: absolute;
+    top: 1rem;
+    right: .8rem;
+    border-radius: 50%;
+    background-color: darkturquoise;
+    display: flex;
+    flex-wrap: wrap;
+    place-content: center;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
+  }
+}
